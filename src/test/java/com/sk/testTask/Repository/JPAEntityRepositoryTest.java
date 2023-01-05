@@ -15,6 +15,8 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 @Testcontainers
@@ -51,5 +53,11 @@ class JPAEntityRepositoryTest {
     @Test
     void findById(){
         Assertions.assertEquals(repository.findById(1L).get().getCounter(),5);
+    }
+    @Test
+    void failFindById(){
+        Assertions.assertThrows(NoSuchElementException.class,()->{
+            repository.findById(0L);
+        });
     }
 }
