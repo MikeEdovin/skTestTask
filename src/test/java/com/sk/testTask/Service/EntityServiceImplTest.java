@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.dao.DataAccessException;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -48,7 +49,7 @@ class EntityServiceImplTest {
     @Test
     void failUpdate(){
         Mockito.when(repository.findById(0L)).thenThrow(new NoSuchElementException());
-        Assertions.assertThrows(NoSuchElementException.class,()->{
+        Assertions.assertThrows(DataAccessException.class,()->{
             service.update(failingAdder.getId(), failingAdder.getAdd());
         });
     }
