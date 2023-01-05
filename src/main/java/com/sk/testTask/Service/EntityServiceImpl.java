@@ -16,7 +16,8 @@ public class EntityServiceImpl implements EntityService{
     public Counter update(long id, long add) throws NoSuchElementException {
         JPAEntity entity=repository.findById(id).get();
         Counter counter=entity.getCounter();
-        counter.setCurrent(counter.getCurrent()+add);
+        long current=counter.getCurrent()+add;
+        counter.setCurrent(current);
         entity.setCounter(counter);
         return repository.save(entity).getCounter();
 
