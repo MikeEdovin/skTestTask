@@ -18,7 +18,7 @@ import javax.persistence.*;
         typeClass = JsonType.class)
 public class JPAEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Type(type = "json")
