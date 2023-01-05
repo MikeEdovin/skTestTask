@@ -50,13 +50,12 @@ class CounterControllerTest {
     void update() throws Exception {
         Adder adder=new Adder(1,5);
         Counter counter=new Counter(5);
-        Mockito.when(service.update(adder.getId(), adder.getAdd())).thenReturn(counter);
+        Mockito.when(service.update(adder.getId(), adder.getAdd())).thenReturn(new Counter(10));
 
         mockMvc.perform(post("/add")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(adder)))
                         .andExpect(status().isOk())
-                        .andExpect(jsonPath("$.current").isNotEmpty())
                         .andExpect(jsonPath("$.current").value("10"))
                         .andDo(print()).andReturn();
     }
