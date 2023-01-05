@@ -8,13 +8,14 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class EntityServiceImpl implements EntityService{
     @Autowired
     JPAEntityRepository repository;
     @Override
-    public Counter update(long id, long add) throws DataAccessException {
+    public Counter update(long id, long add) throws DataAccessException, NoSuchElementException{
         JPAEntity entity=repository.findById(id).get();
         Counter counter=entity.getCounter();
         long current=counter.getCurrent()+add;

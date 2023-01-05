@@ -23,7 +23,7 @@ public class CounterController {
         try{
             Counter counter=service.update(adder.getId(), adder.getAdd());
             return ResponseEntity.ok().body(counter);
-        }catch (DataAccessException e){
+        }catch (NoSuchElementException e){
             return ResponseEntity.status(418).build();
         }
     }

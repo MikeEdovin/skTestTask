@@ -49,7 +49,7 @@ class EntityServiceImplTest {
     @Test
     void failUpdate(){
         Mockito.when(repository.findById(0L)).thenThrow(new NoSuchElementException());
-        Assertions.assertThrows(DataAccessException.class,()->{
+        Assertions.assertThrows(NoSuchElementException.class,()->{
             service.update(failingAdder.getId(), failingAdder.getAdd());
         });
     }
