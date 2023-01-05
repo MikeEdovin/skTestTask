@@ -52,12 +52,11 @@ class JPAEntityRepositoryTest {
 
     @Test
     void findById(){
-        Assertions.assertEquals(repository.findById(1L).get().getCounter(),5);
+        Assertions.assertEquals(repository.findById(1L).get().getCounter().getCurrent(),0);
     }
     @Test
     void failFindById(){
-        Assertions.assertThrows(NoSuchElementException.class,()->{
-            repository.findById(0L);
+        Assertions.assertEquals(Optio);
         });
     }
 }
