@@ -33,3 +33,4 @@ add значение поля current столбца obj строки идент
 В случае невозможности провести операцию, вернуть http статус 418.
 
 
+JPARepo test running in Docker so it's necessary to run it before.
