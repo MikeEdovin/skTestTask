@@ -13,9 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.dao.DataAccessException;
-
 import java.util.NoSuchElementException;
 import java.util.Optional;
 @ExtendWith(MockitoExtension.class)
@@ -25,7 +22,6 @@ class EntityServiceImplTest {
     private JPAEntityRepository repository;
     @InjectMocks
     private EntityServiceImpl service;
-
     private JPAEntity entity;
     private Adder adder,failingAdder;
     @BeforeEach

@@ -15,11 +15,8 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 @Testcontainers
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -53,7 +50,8 @@ class JPAEntityRepositoryTest {
 
     @Test
     void findById() {
-        Assertions.assertEquals(repository.findById(1L).get().getCounter().getCurrent(), 0);
+        Assertions
+                .assertEquals(repository.findById(1L).get().getCounter().getCurrent(), 0);
     }
 
     @Test
