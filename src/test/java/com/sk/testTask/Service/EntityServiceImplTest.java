@@ -32,9 +32,6 @@ class EntityServiceImplTest {
         entity=new JPAEntity(1,new Counter(5));
         adder=new Adder(1,5);
         failingAdder=new Adder(0,5);
-        Mockito.when(repository.findById(1L)).thenReturn(Optional.of(entity));
-        Mockito.when(repository.save(entity)).thenReturn(entity);
-        //Mockito.when(repository.findById(0L)).thenThrow(new NoSuchElementException());
     }
 
     @AfterEach
@@ -43,11 +40,14 @@ class EntityServiceImplTest {
 
     @Test
     void successfulUpdate() {
+        Mockito.when(repository.findById(1L)).thenReturn(Optional.of(entity));
+        Mockito.when(repository.save(entity)).thenReturn(entity);
         Assertions.assertEquals(service.update(adder.getId(),adder.getAdd()).getCurrent(),10);
     }
 
     @Test
     void failUpdate(){
+        Mockito.when(repository.findById(0L)).thenThrow(new NoSuchElementException());
         Assertions.assertThrows(NoSuchElementException.class,()->{
             service.update(failingAdder.getId(), failingAdder.getAdd());
         });
